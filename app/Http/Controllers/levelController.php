@@ -12,9 +12,14 @@ class levelController extends Controller
 {
     public function index() {
         $datas = DB::select('select * from level');
+        $areas = DB::select('select * from area');
+        $monsters = DB::select('select * from monster');
 
         return view('level.index')
-            ->with('datas', $datas);
+            ->with('datas', $datas)
+            ->with('areas', $areas)
+            ->with('monsters', $monsters);
+
     }
 
     public function create() {
