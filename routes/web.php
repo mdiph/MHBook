@@ -16,7 +16,7 @@ use App\Http\Controllers\monsterController;
 |
 */
 
-Route::get('/', [levelController::class, 'index'])->name('level.index');
+/* Route::get('/', [levelController::class, 'index'])->name('level.index'); */
 Route::get('add', [levelController::class, 'create'])->name('level.create');
 Route::post('store', [levelController::class, 'store'])->name('level.store');
 Route::get('edit/{id}', [levelController::class, 'edit'])->name('level.edit');
@@ -34,3 +34,10 @@ Route::post('monster/store', [monsterController::class, 'store'])->name('monster
 Route::get('monster/edit/{id}', [monsterController::class, 'edit'])->name('monster.edit');
 Route::post('monster/update/{id}', [monsterController::class, 'update'])->name('monster.update');
 Route::post('monster/delete/{id}', [monsterController::class, 'delete'])->name('monster.delete');
+
+Auth::routes();
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/',[levelController::class, 'index'])->name('level.index');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
