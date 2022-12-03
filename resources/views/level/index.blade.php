@@ -2,17 +2,17 @@
 
 @section('content')
 
-<p>Cari Data:</p>
+<p>Search E-Handbook:</p>
 <div class="pb-3">
-    <form class="d-flex" action="{{ url('/') }}" method="get">
-        <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" aria-label="Search">
-        <button class="btn btn-secondary" type="submit">Cari</button>
+    <form class="d-flex" action="{{ url('level') }}" method="get">
+        <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Enter The Keyword" aria-label="Search">
+        <button class="btn btn-secondary" type="submit">Search</button>
     </form>
 </div>
 
-<h4 class="mt-5">Data level</h4>
+<h4 class="mt-5">Level Data</h4>
 
-<a href="{{ route('level.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
+<a href="{{ route('level.create') }}" type="button" class="btn btn-success rounded-3">Add Data</a>
 
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">
@@ -38,11 +38,11 @@
                 <td>{{ $data->level_grade }}</td>
                 <td>{{ $data->mission_level }}</td>
                 <td>
-                    <a href="{{ route('level.edit', $data->id_level) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
+                    <a href="{{ route('level.edit', $data->id_level) }}" type="button" class="btn btn-warning rounded-3">Edit</a>
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $data->id_level }}">
-                        Hapus
+                        Delete
                     </button>
 
                     <!-- Modal -->
@@ -50,17 +50,17 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                    <h5 class="modal-title" id="hapusModalLabel">Confirm</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form method="POST" action="{{ route('level.delete', $data->id_level) }}">
                                     @csrf
                                     <div class="modal-body">
-                                        Apakah anda yakin ingin menghapus {{ $data->level_grade}} ini?
+                                        Delete {{ $data->level_grade}}?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Yes</button>
                                     </div>
                                 </form>
                             </div>
@@ -72,9 +72,9 @@
     </tbody>
 </table>
 
-<h4 class="mt-5">Data Area</h4>
+<h4 class="mt-5">Area Data</h4>
 
-<a href="{{ route('area.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
+<a href="{{ route('area.create') }}" type="button" class="btn btn-success rounded-3">Add Data</a>
 
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">
@@ -102,11 +102,11 @@
                 <td>{{ $area->area_location }}</td>
                 <td>{{ $area->area_name }}</td>
                 <td>
-                    <a href="{{ route('area.edit', $area->id_area) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
+                    <a href="{{ route('area.edit', $area->id_area) }}" type="button" class="btn btn-warning rounded-3">Edit</a>
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $area->id_area }}">
-                        Hapus
+                        Delete
                     </button>
 
                     <!-- Modal -->
@@ -114,17 +114,17 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                    <h5 class="modal-title" id="hapusModalLabel">Confirm</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form method="POST" action="{{ route('area.delete', $area->id_area) }}">
                                     @csrf
                                     <div class="modal-body">
-                                        Apakah anda yakin ingin menghapus {{ $area->area_grade}} ini?
+                                        Delete {{ $area->area_grade}}?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Yes</button>
                                     </div>
                                 </form>
                             </div>
@@ -136,9 +136,9 @@
     </tbody>
 </table>
 
-<h4 class="mt-5">Data Monster</h4>
+<h4 class="mt-5">Monster Data</h4>
 
-<a href="{{ route('monster.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
+<a href="{{ route('monster.create') }}" type="button" class="btn btn-success rounded-3">Add Data</a>
 
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">
@@ -170,11 +170,11 @@
                 <td>{{ $monster->monster_name }}</td>
                 <td>{{ $monster->monster_weakness }}</td>
                 <td>
-                    <a href="{{ route('monster.edit', $monster->id_monster) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
+                    <a href="{{ route('monster.edit', $monster->id_monster) }}" type="button" class="btn btn-warning rounded-3">Edit</a>
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $monster->id_monster }}">
-                        Hapus
+                        Delete
                     </button>
 
                     <!-- Modal -->
@@ -182,17 +182,17 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                    <h5 class="modal-title" id="hapusModalLabel">Confirm</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form method="POST" action="{{ route('monster.delete', $monster->id_monster) }}">
                                     @csrf
                                     <div class="modal-body">
-                                        Apakah anda yakin ingin menghapus {{ $monster->monster_name}} ini?
+                                        Delete {{ $monster->monster_name}}?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Yes</button>
                                     </div>
                                 </form>
                             </div>

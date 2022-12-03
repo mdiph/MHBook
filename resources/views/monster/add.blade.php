@@ -15,7 +15,7 @@
     <div class="card mt-4">
         <div class="card-body">
 
-            <h5 class="card-title fw-bolder mb-3">Tambah Monster</h5>
+            <h5 class="card-title fw-bolder mb-3">Add Monster</h5>
 
             <form method="post" action="{{ route('monster.store') }}">
                 @csrf
@@ -44,7 +44,7 @@
                     <input type="text" class="form-control" id="monster_weakness" name="monster_weakness">
                 </div>
                 <div class="text-center">
-                    <input type="submit" class="btn btn-primary" value="Tambah" />
+                    <input type="submit" class="btn btn-primary" value="Add" />
                 </div>
             </form>
         </div>

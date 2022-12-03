@@ -17,7 +17,7 @@
 <div class="card mt-4">
 	<div class="card-body">
 
-        <h5 class="card-title fw-bolder mb-3">Ubah Data level {{ $data->id_level }}</h5>
+        <h5 class="card-title fw-bolder mb-3">Change Level Data {{ $data->id_level }}</h5>
 
 		<form method="post" action="{{ route('level.update', $data->id_level) }}">
 			@csrf
@@ -34,7 +34,7 @@
                 <input type="text" class="form-control" id="mission_level" name="mission_level" value="{{ $data->mission_level }}">
             </div>
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary" value="Ubah" />
+				<input type="submit" class="btn btn-primary" value="Edit" />
 			</div>
 		</form>
 	</div>

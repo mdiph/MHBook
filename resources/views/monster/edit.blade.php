@@ -17,7 +17,7 @@
 <div class="card mt-4">
 	<div class="card-body">
 
-        <h5 class="card-title fw-bolder mb-3">Ubah Data area {{ $data->id_monster }}</h5>
+        <h5 class="card-title fw-bolder mb-3">Change Area Data {{ $data->id_monster }}</h5>
 
 		<form method="post" action="{{ route('monster.update', $data->id_monster) }}">
 			@csrf
@@ -46,7 +46,7 @@
                 <input type="text" class="form-control" id="monster_weakness" name="monster_weakness" value="{{ $data->monster_weakness }}">
             </div>
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary" value="Ubah" />
+				<input type="submit" class="btn btn-primary" value="Edit" />
 			</div>
 		</form>
 	</div>

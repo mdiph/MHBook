@@ -15,7 +15,7 @@
     <div class="card mt-4">
         <div class="card-body">
 
-            <h5 class="card-title fw-bolder mb-3">Tambah level</h5>
+            <h5 class="card-title fw-bolder mb-3">Add level</h5>
 
             <form method="post" action="{{ route('level.store') }}">
                 @csrf
@@ -33,7 +33,7 @@
                 </div>
                 </div>
                 <div class="text-center">
-                    <input type="submit" class="btn btn-primary" value="Tambah" />
+                    <input type="submit" class="btn btn-primary" value="Add" />
                 </div>
             </form>
         </div>
