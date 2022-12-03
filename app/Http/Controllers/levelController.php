@@ -10,10 +10,42 @@ use Illuminate\Support\Facades\Hash;
 
 class levelController extends Controller
 {
-    public function index() {
-        $datas = DB::select('select * from level');
-        $areas = DB::select('select * from area');
-        $monsters = DB::select('select * from monster');
+    public function index(Request $request) {
+
+
+        $katakunci = $request->katakunci;
+        if(strlen($katakunci)){
+            $monsters = DB::table('monster')
+                ->where('monster_name', 'like', "%$katakunci%")
+                ->orWhere('monster_attribute', 'like', "%$katakunci%")
+                ->orWhere('monster_weakness', 'like', "%$katakunci%")
+                ->paginate(5);
+        }else{
+
+            $monsters = DB::select('select * from monster');
+        }
+
+        if(strlen($katakunci)){
+            $datas = DB::table('level')
+                ->where('level_grade', 'like', "%$katakunci%")
+                ->orWhere('mission_level', 'like', "%$katakunci%")
+                ->paginate(5);
+        }else{
+
+            $datas = DB::select('select * from level');
+        }
+
+        if(strlen($katakunci)){
+            $areas = DB::table('area')
+                ->where('area_name', 'like', "%$katakunci%")
+                ->orWhere('area_grade', 'like', "%$katakunci%")
+                ->orWhere('area_location', 'like', "%$katakunci%")
+                ->paginate(5);
+        }else{
+
+            $areas = DB::select('select * from area');
+        }
+
 
         return view('level.index')
             ->with('datas', $datas)
