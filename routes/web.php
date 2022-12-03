@@ -34,6 +34,8 @@ Route::post('monster/store', [monsterController::class, 'store'])->name('monster
 Route::get('monster/edit/{id}', [monsterController::class, 'edit'])->name('monster.edit');
 Route::post('monster/update/{id}', [monsterController::class, 'update'])->name('monster.update');
 Route::post('monster/delete/{id}', [monsterController::class, 'delete'])->name('monster.delete');
+Route::post('softdelete/{id}', [monsterController::class, 'softDelete'])->name('monster.softDelete');
+Route::get('restore', [monsterController::class, 'restore'])->name('monster.restore');
 
 Auth::routes();
 Route::group(['middleware'=>'auth'], function(){

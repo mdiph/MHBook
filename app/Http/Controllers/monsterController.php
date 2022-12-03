@@ -84,4 +84,20 @@ class monsterController extends Controller
 
         return redirect()->route('level.index')->with('success', 'Monster Data Has Been Removed');
     }
+        
+    public function softDelete($id)
+    {
+        // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
+        DB::update('UPDATE monster SET is_deleted = 1
+        WHERE id_monster = :id_monster', ['id_monster' => $id]);
+        return redirect()->route('level.index')->with('success', 'Monster Data Has Been Removed');
+    }
+
+    public function restore()
+    {
+        // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
+        DB::table('monster')
+        ->update(['is_deleted' => 0]);
+        return redirect()->route('level.index')->with('success', 'Monster Data Has Been Restored');
+    }
 }

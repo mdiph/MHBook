@@ -22,7 +22,7 @@ class levelController extends Controller
                 ->paginate(5);
         }else{
 
-            $monsters = DB::select('select * from monster');
+            $monsters = DB::select('select * from monster where is_deleted=0');
         }
 
         if(strlen($katakunci)){
@@ -46,11 +46,17 @@ class levelController extends Controller
             $areas = DB::select('select * from area');
         }
 
+        $joins = DB::table('monster')
+            ->join('area', 'area.id_area', '=', 'monster.id_monster')
+            ->select('area.*', 'monster.*')
+            
+            ->get();
 
         return view('level.index')
             ->with('datas', $datas)
             ->with('areas', $areas)
-            ->with('monsters', $monsters);
+            ->with('monsters', $monsters)
+            ->with('joins',$joins);
 
     }
 
@@ -110,4 +116,5 @@ class levelController extends Controller
 
         return redirect()->route('level.index')->with('success', 'Level Data Has Been Removed');
     }
+
 }

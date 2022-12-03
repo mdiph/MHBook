@@ -11,6 +11,9 @@
 </div>
 <h4 class="mt-5">Monster Data</h4>
 
+
+<a href="{{ route('monster.restore') }}" type="button" class="btn btn-success rounded-3">Restore Data</a>
+
 <a href="{{ route('monster.create') }}" type="button" class="btn btn-success rounded-3">Add Data</a>
 
 @if($message = Session::get('success'))
@@ -18,18 +21,17 @@
         {{ $message }}
     </div>
 @endif
-
 <table class="table table-hover mt-2">
     <thead>
-      <tr>
-        <th>ID Area</th>
-        <th>ID Level</th>
-        <th>ID Monster</th>
-        <th>Monster Attribute</th>
-        <th>Monster Name</th>
-        <th>Monster Weakness</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+            <th>ID Area</th>
+            <th>ID Level</th>
+            <th>ID Monster</th>
+            <th>Monster Attribute</th>
+            <th>Monster Name</th>
+            <th>Monster Weakness</th>
+            <th>Action</th>
+        </tr>
     </thead>
 
 
@@ -62,6 +64,31 @@
                                     @csrf
                                     <div class="modal-body">
                                         Delete {{ $monster->monster_name}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#softhapusModal{{ $monster->id_monster }}">
+                        Soft Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="softhapusModal{{ $monster->id_monster }}" tabindex="-1" aria-labelledby="softhapusModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="softhapusModalLabel">Confirm</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form method="POST" action="{{ route('monster.softDelete', $monster->id_monster) }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        Apakah anda yakin ingin menghapus {{ $monster->monster_name}} ini?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -108,12 +135,12 @@
                     <a href="{{ route('level.edit', $data->id_level) }}" type="button" class="btn btn-warning rounded-3">Edit</a>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $data->id_level }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal2{{ $data->id_level }}">
                         Delete
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="hapusModal{{ $data->id_level }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="hapusModal2{{ $data->id_level }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -172,12 +199,12 @@
                     <a href="{{ route('area.edit', $area->id_area) }}" type="button" class="btn btn-warning rounded-3">Edit</a>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $area->id_area }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal3{{ $area->id_area }}">
                         Delete
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="hapusModal{{ $area->id_area }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="hapusModal3{{ $area->id_area }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -203,6 +230,28 @@
     </tbody>
 </table>
 
-
-
+<table class="table table-hover mt-2">
+    <thead>
+      <tr>
+        <th>Area Name</th>
+        <th>Area Location</th>
+        <th>Area Grade</th>
+        <th>Monster Name</th>
+        <th>Monster Attribute</th>
+        <th>Monster Weakness</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach ($joins as $join)
+            <tr>
+                <td>{{ $join->area_name }}</td>
+                <td>{{ $join->area_location}}</td>
+                <td>{{ $join->area_grade}}</td>
+                <td>{{ $join->monster_name}}</td>
+                <td>{{ $join->monster_attribute}}</td>
+                <td>{{ $join->monster_weakness}}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 @stop
